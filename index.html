@@ -176,6 +176,8 @@ var ParticlePool = (function() {
  * Putting it all together
  */
 (function(canvas) {
+    const queryString = window.location.search;
+console.log(queryString);
   var context = canvas.getContext('2d'),
       particles = new ParticlePool(settings.particles.length),
       particleRate = settings.particles.length / settings.particles.duration, // particles/sec
@@ -267,7 +269,13 @@ var ParticlePool = (function() {
       // import * as THREE from './node_modules/three/build/three.module.js'
       import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
 
-      function main() {
+    //   get param from url
+    function main() {
+
+        // get url params
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('name');
+        var name = myParam ? myParam : 'JDEV';
           const canvas = document.querySelector('#d');
        
           const renderer = new THREE.WebGLRenderer({
@@ -344,7 +352,7 @@ var ParticlePool = (function() {
               async function doit() {
                   const font = await loadFont('https://threejsfundamentals.org/threejs/resources/threejs/fonts/helvetiker_regular.typeface.json');
                   //   const geometry = new THREE.TextGeometry('Jensen', {
-                  const geometry = new THREE.TextGeometry('Mai Thao', {
+                  const geometry = new THREE.TextGeometry(name, {
                       font: font,
                       size: 4.5,
 
